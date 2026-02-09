@@ -181,37 +181,36 @@
     </div>
 
     <div class="footer">
-        <div class="container">
-            <div class="footer-wrapper">
-                <p class="footer-text">© 2026 Nanox Philippines Inc. All Rights Reserved.</p>
-                <!-- <p class="footer-text">All Rights Reserved</p> -->
-                <!-- <p class="footer-text">Website Version 1.0.0</p> -->
-            </div>
-            <p class="up-button" id="btnScrollUp"><i class="fa fa-chevron-up" aria-hidden="true"></i></p>
+    <div class="container">
+        <div class="footer-wrapper">
+            <p class="footer-text">© 2026 Nanox Philippines Inc. All Rights Reserved.</p>
         </div>
-        </div>
-        <div class="chat-logo-container">
-        <div class="chat-logo" id="chatLogo">
-            
-            <!-- Logo on the left -->
-            <i class="fas fa-comments chat-icon"></i>
+        <!-- REMOVED the <p> tag and kept only the chevron icon with the new class -->
+        <i class="fa fa-chevron-up up-button" id="btnScrollUp" aria-hidden="true"></i>
+    </div>
+</div>
 
-            <!-- Text on the right -->
-            <div class="chat-text">
-            <h1 class="inquire_header">INQUIRE WITH US!</h1> 
-            <p class="inquire_subheader">Tell us how we can support your business.</p>
-            <p class="click-hint">Click to open inquiry form</p>
-            </div>
+            <div class="chat-logo-container">
+            <div class="chat-logo" id="chatLogo">
+                
+                <!-- Using fa-comments (speech bubble) which is available in Font Awesome 4.7.0 -->
+                <!-- For a "person talking" effect, we can use this icon -->
+                <i class="fas fa-headset chat-icon"></i>
 
-        </div>
-        </div>
+                <!-- Hidden text that appears on hover -->
+                <div class="chat-text">
+                <h1 class="inquire_header">INQUIRE WITH US!</h1> 
+                </div>
+
+            </div>
+            </div>  
 
         </div>
         
         <div class="chat-modal" id="inquiryModal">
             <div class="chat-modal-content">
                 <div class="chat-modal-body">
-                    <iframe src="https://forms.office.com/r/bVTYYTCte1" frameborder="0" width="95%" height="95%" title="Inquiry Form"></iframe>
+                    <iframe src="https://forms.office.com/r/bVTYYTCte1" frameborder="0" width="90%" height="90%" title="Inquiry Form"></iframe>
                 </div>
             </div>
         </div>
