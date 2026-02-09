@@ -1,320 +1,442 @@
-        .chat-logo-container {
-            position: fixed;
-            bottom: 6px;
-            right: 14px;
-            margin: 0;
-            padding: 0;
-            z-index: 999999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+.chat-logo-container {
+    position: fixed;
+    bottom: 6px;
+    right: 14px;
+    margin: 0;
+    padding: 0;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
-        /* ================= CHAT BUTTON ================= */
+/* ================= NEW CHAT BUTTON DESIGN ================= */
+.chat-logo {
+    width: 60px;
+    height: 60px;
+    background-color: #0b192a;
+    margin-top: 36px;
+    border-radius: 50%;
+    border: 3px solid #0b192a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    cursor: pointer;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(11, 25, 42, 0.3);
+    /* SMOOTH TRANSITION: Keep transitions smooth without interruption */
+    transition:
+        width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        border-radius 0.4s ease,
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
 
-        .chat-logo {
-            width: 200px;              
-            height: 48px;              
-            background-color: white;
-            margin-top: 30px;
-            border-radius: 6px;
-            border: 3px solid #0b192a;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0 14px;
-            cursor: pointer;
-            color: #0b192a;
-            transition:
-                width 0.3s ease,
-                background-color 0.3s ease,
-                transform 0.25s ease;
-        }
+/* HOVER STATE: Expand immediately */
+.chat-logo:hover {
+    width: 220px;
+    border-radius: 30px;
+    background-color: #0b192a;
+    color: white;
+    box-shadow: 0 6px 25px rgba(11, 25, 42, 0.4);
+    transform: translateY(-3px);
+    /* SAME TRANSITION: No delay, matches the base transition */
+    transition:
+        width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        border-radius 0.4s ease,
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
 
-        /* Expand width on hover */
-        .chat-logo:hover {
-            width: 220px;
-            height: 70px;
-            background-color: #0b192a;
-            color: white;
-        }
+/* Create a class for expanded state that will be added/removed with JS */
+.chat-logo.expanded {
+    width: 220px;
+    border-radius: 30px;
+    background-color: #0b192a;
+    color: white;
+    box-shadow: 0 6px 25px rgba(11, 25, 42, 0.4);
+    transform: translateY(-3px);
+}
 
-        .chat-logo:hover .chat-icon {
-            color: white;
-        }
+/* Active/click effect should still be immediate */
+.chat-logo:active {
+    transform: scale(0.95) translateY(0);
+    box-shadow: 0 3px 10px rgba(11, 25, 42, 0.25);
+    transition: all 0.15s ease;
+}
 
-        .chat-logo:hover {
-            transform: scale(1.05);
-        }
+/* ================= CHAT ICON ================= */
+.chat-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* SMOOTH TRANSITION: Consistent timing function */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+    margin: 0;
+}
 
-        .chat-logo:active {
-            transform: scale(0.98);
-        }
+/* HOVER: Icon moves */
+.chat-logo:hover .chat-icon,
+.chat-logo.expanded .chat-icon {
+    left: 20px;
+    transform: translate(0, -50%) scale(1.1);
+    /* SAME TRANSITION: Matches base timing */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        /* ================= ICON ================= */
+/* ================= TEXT ================= */
+.chat-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.15;
+    text-align: left;
+    overflow: hidden;
+    width: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    color: white !important;
+    /* SMOOTH TRANSITION: Consistent timing */
+    transition:
+        opacity 0.3s ease,
+        width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s ease;
+}
 
-        .chat-icon {
-            font-size:12px;
-            flex-shrink: 0;
-            color: inherit;
-        }
-        .chat-logo:hover .chat-icon {
-            opacity: 0;
-            transform: translateX(-10px);
-            width: 0;
-        }
+/* HOVER: Text appears */
+.chat-logo:hover .chat-text,
+.chat-logo.expanded .chat-text {
+    width: auto;
+    opacity: 1;
+    transform: translateX(0);
+    margin-left: 50px;
+    margin-right: 20px;
+    color: white !important;
+    /* SAME TRANSITION: Consistent timing with small delay for smooth reveal */
+    transition:
+        opacity 0.3s ease 0.1s,
+        width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s ease 0.1s;
+}
 
+/* Header - WHITE BY DEFAULT */
+.inquire_header {
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: white !important;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
 
-        /* ================= TEXT ================= */
+/* Hide subheader and click hint in this design */
+.inquire_subheader,
+.click-hint {
+    display: none;
+}
 
-        .chat-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            line-height: 1;
-            text-align: center;
-            overflow: hidden;
-        }
+/* ================= MOBILE OVERRIDES ================= */
+@media (max-width: 768px) {
+    /* On mobile, simpler transitions */
+    .chat-logo {
+        transition: all 0.3s ease !important;
+    }
+    
+    .chat-icon {
+        transition: all 0.3s ease !important;
+    }
+    
+    .chat-text {
+        transition: all 0.3s ease !important;
+        color: white !important;
+    }
+    
+    /* Keep mobile behavior as before - no expansion */
+    .chat-logo:hover {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 50% !important;
+        transform: none !important;
+        box-shadow: 0 4px 15px rgba(11, 25, 42, 0.3) !important;
+        transition: all 0.3s ease !important;
+        color: white !important;
+    }
+    
+    .chat-logo:hover .chat-icon {
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        transition: all 0.3s ease !important;
+        color: white !important;
+    }
+    
+    .chat-logo:hover .chat-text {
+        width: 0 !important;
+        opacity: 0 !important;
+        transform: translateX(-10px) !important;
+        margin: 0 !important;
+        color: white !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Disable expanded class on mobile */
+    .chat-logo.expanded {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 50% !important;
+        transform: none !important;
+        background-color: #0b192a !important;
+        box-shadow: 0 4px 15px rgba(11, 25, 42, 0.3) !important;
+        color: white !important;
+    }
+    
+    .chat-logo.expanded .chat-icon {
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        color: white !important;
+    }
+    
+    .chat-logo.expanded .chat-text {
+        width: 0 !important;
+        opacity: 0 !important;
+        transform: translateX(-10px) !important;
+        margin: 0 !important;
+        color: white !important;
+    }
+    
+    /* HIDE TEXT COMPLETELY ON MOBILE */
+    .chat-text {
+        display: none !important;
+    }
+    
+    .inquire_header {
+        color: white !important;
+    }
+    
+    /* DISABLE MOBILE-EXPANDED CLASS STYLES */
+    .chat-logo.mobile-expanded {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 50% !important;
+        transform: none !important;
+        background-color: #0b192a !important;
+        box-shadow: 0 4px 15px rgba(11, 25, 42, 0.3) !important;
+        color: white !important;
+    }
+    
+    /* Ensure icon stays visible and centered */
+    .chat-logo.mobile-expanded .chat-icon {
+        display: flex !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        color: white !important;
+    }
+    
+    /* Keep text hidden even with mobile-expanded class */
+    .chat-logo.mobile-expanded .chat-text {
+        display: none !important;
+        width: 0 !important;
+        opacity: 0 !important;
+        color: white !important;
+    }
+}
 
-        /* Header always visible */
-        .inquire_header {
-            text-align: center;
-            font-size: 15px;
-            margin-top: 70px;
-            font-weight: 650;
-            white-space: nowrap;
-        }
+/* ================= MODAL (UNCHANGED) ================= */
+.chat-modal {
+    inset: 0;
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999999;
+    justify-content: center;
+    align-items: center;
+}
 
-        /* Hidden by default */
-        .inquire_subheader {
-            font-size: 15px;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transform: translateY(10px);
-            transition:
-                opacity 0.25s ease,
-                transform 0.25s ease,
-                max-height 0.25s ease;
-        }
+.chat-modal-content {
+    width: 90%;
+    max-width: 800px;
+    height: 80vh;
+    max-height: 700px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
-        /* Reveal on hover */
-        .chat-logo:hover .inquire_subheader {
-            opacity: 1;
-            max-height: 40px;
-            transform: translateY(0);
-        }
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
-        /* ================= CLICK HINT ================= */
+.chat-modal-body {
+    flex: 1;
+    overflow: hidden;
+    height: 100%;
+}
 
-        .click-hint {
-            margin-top: 8px;
-            background-color: rgba(52, 152, 219, 0.9);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-weight: 500;
-            font-size: 0.8rem;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            pointer-events: none;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-        }
+.chat-modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
-        /* ================= MOBILE ================= */
-        @media (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .chat-modal-content {
+        width: 95%;
+        max-width: 95%;
+    }
+}
 
-            /* Default: icon only */
-            .chat-logo {
-                width: 60px;
-                height: 60px;
-                justify-content: center;
-                padding: 0;
-                transition: width 0.3s ease, background-color 0.3s ease;
-                background-color: white;
-                color: #0b192a;
-                border: 3px solid #0b192a;
-                border-radius: 6px;
-            }
+@media (max-width: 768px) {
+    .chat-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .chat-icon {
+        font-size: 26px;
+        width: 26px;
+        height: 26px;
+    }
+    
+    .up-button {
+        width: 60px;
+        height: 60px;
+        right: 84px;
+    }
+    
+    .up-button i {
+        font-size: 26px;
+        width: 26px;
+        height: 26px;
+    }
+    
+    .chat-logo-container {
+        right: 15px;
+        bottom: 15px;
+    }
+    
+    .click-hint {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+    
+    .notification-badge {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+    }
+    
+    .chat-modal-content {
+        width: 98%;
+        max-width: 98%;
+        height: 85vh;
+        max-height: 85vh;
+    }
+}
 
-            /* Hide text initially */
-            .chat-text {
-                display: none;
-            }
+@media (max-width: 480px) {
+    .chat-logo {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .chat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .up-button {
+        width: 55px;
+        height: 55px;
+        right: 77px; /* Adjusted for smaller button */
+    }
+    
+    .up-button i {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .chat-logo-container {
+        right: 12px;
+        bottom: 12px;
+    }
+    
+    .click-hint {
+        font-size: 0.7rem;
+        padding: 3px 7px;
+    }
+    
+    .chat-modal-content {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+    }
+}
 
-            .chat-logo .chat-icon {
-                display: block;
-            }
+@media (max-width: 360px) {
+    .chat-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .chat-icon {
+        font-size: 22px;
+        width: 22px;
+        height: 22px;
+    }
+    
+    .up-button {
+        width: 50px;
+        height: 50px;
+        right: 70px; /* Adjusted for smaller button */
+    }
+    
+    .up-button i {
+        font-size: 22px;
+        width: 22px;
+        height: 22px;
+    }
+    
+    .chat-logo-container {
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    .click-hint {
+        display: none;
+    }
+}
 
-            /* Expanded state on tap/click */
-            .chat-logo.mobile-expanded {
-                width: 180px;               /* wide enough for text */
-                justify-content: center;
-                background-color: #0b192a;
-                color: white;
-                border-color: #0b192a;
-            }
+/* Landscape orientation support */
+@media (max-height: 600px) and (orientation: landscape) {
+    .chat-modal-content {
+        max-height: 95vh;
+    }
+}
 
-            /* Only show the header text in expanded mode */
-            .chat-logo.mobile-expanded .chat-text {
-                display: flex;
-                justify-content: center;
-            }
-
-            .chat-logo.mobile-expanded .inquire_header {
-                font-size: 16px;
-                margin: 0;
-                white-space: nowrap;
-            }
-
-            /* Hide other elements on mobile */
-            .chat-logo.mobile-expanded .inquire_subheader,
-            .chat-logo.mobile-expanded .click-hint {
-                display: none;
-            }
-
-            /* Hide the icon when expanded */
-            .chat-logo.mobile-expanded .chat-icon {
-                display: none;
-            }
-        }
-
-        /* ================= MODAL (UNCHANGED) ================= */
-
-        .chat-modal {
-            inset: 0;
-            display: none;
-            position: fixed;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 9999999;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .chat-modal-content {
-            width: 90%;
-            max-width: 800px;
-            height: 80vh;
-            max-height: 700px;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-                @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .chat-modal-body {
-            flex: 1;
-            overflow: hidden;
-            height: 100%;
-        }
-        
-        .chat-modal-body iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .chat-modal-content {
-                width: 95%;
-                max-width: 95%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .chat-logo {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .chat-icon {
-                font-size: 26px;
-            }
-            
-            .chat-logo-container {
-                right: 15px;
-                bottom: 15px;
-            }
-            
-            .click-hint {
-                font-size: 0.75rem;
-                padding: 4px 8px;
-            }
-            
-            .notification-badge {
-                width: 18px;
-                height: 18px;
-                font-size: 9px;
-            }
-            
-            .chat-modal-content {
-                width: 98%;
-                max-width: 98%;
-                height: 85vh;
-                max-height: 85vh;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .chat-logo {
-                width: 55px;
-                height: 55px;
-            }
-            
-            .chat-icon {
-                font-size: 24px;
-            }
-            
-            .chat-logo-container {
-                right: 12px;
-                bottom: 12px;
-            }
-            
-            .click-hint {
-                font-size: 0.7rem;
-                padding: 3px 7px;
-            }
-            
-            .chat-modal-content {
-                width: 100%;
-                max-width: 100%;
-                height: 100%;
-                max-height: 100%;
-                border-radius: 0;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .chat-logo {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .chat-icon {
-                font-size: 22px;
-            }
-            
-            .chat-logo-container {
-                right: 10px;
-                bottom: 10px;
-            }
-            
-            .click-hint {
-                display: none;
-            }
-        }
-        
-        /* Landscape orientation support */
-        @media (max-height: 600px) and (orientation: landscape) {
-            .chat-modal-content {
-                max-height: 95vh;
-            }
-        }
