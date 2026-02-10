@@ -440,357 +440,82 @@
     }
 }
 
-/* ================= CONFIRMATION MODAL STYLES ================= */
-.confirmation-modal {
-    animation: fadeIn 0.3s ease;
-    backdrop-filter: blur(8px);
-}
-
+/* Confirmation Modal Specific Styles */
 .confirmation-content {
-    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease-out;
 }
 
-.confirmation-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('../dist/assets/Exterior.jpg') center/cover no-repeat;
-    z-index: 0;
-    filter: brightness(0.9);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { 
-        transform: translateY(40px) scale(0.95); 
-        opacity: 0; 
-    }
-    to { 
-        transform: translateY(0) scale(1); 
-        opacity: 1; 
-    }
-}
-
-/* Content container */
-.confirmation-content > div {
-    position: relative;
-    z-index: 1;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 249, 250, 0.98) 100%);
-}
-
-/* Header styles */
-.confirmation-content h3 {
-    color: #0a3b7c;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0 0 10px 0;
-    text-align: center;
-}
-
-.confirmation-content .title-divider {
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(to right, #0a3b7c, #1e88e5);
-    margin: 0 auto 15px;
-    border-radius: 2px;
-}
-
-.confirmation-content .subtitle {
-    color: #5a6d7e;
-    font-size: 14px;
-    font-weight: 400;
-    text-align: center;
-    margin: 0;
-}
-
-/* Message box */
-.confirmation-content .message-box {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    border-left: 5px solid #0a3b7c;
-    box-shadow: 0 5px 20px rgba(10, 59, 124, 0.1);
-    margin: 20px 0;
-}
-
-.confirmation-content .message-box p {
-    color: #333;
-    line-height: 1.7;
-    font-size: 15px;
-    text-align: left;
-    margin: 0;
-}
-
-.confirmation-content .message-box a {
-    color: #0a3b7c;
-    text-decoration: underline;
-    font-weight: 600;
-    transition: color 0.2s;
-}
-
-.confirmation-content .message-box a:hover {
-    color: #08306b;
-    text-decoration: none;
-}
-
-/* Checkbox section */
-.confirmation-content .checkbox-section {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 10px;
-    border: 1px solid #e9ecef;
-    margin: 20px 0;
-}
-
-.confirmation-content .checkbox-container {
+.confirmation-body {
     display: flex;
-    align-items: flex-start;
-    gap: 15px;
-}
-
-#privacyPolicyCheckbox {
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-    accent-color: #0a3b7c;
-    flex-shrink: 0;
-    margin-top: 3px;
-}
-
-#privacyPolicyCheckbox:checked {
-    accent-color: #0a3b7c;
-}
-
-.confirmation-content .checkbox-label {
-    color: #0a3b7c;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.5;
-    cursor: pointer;
-    user-select: none;
-}
-
-.confirmation-content .checkbox-label strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.confirmation-content .checkbox-label span {
-    color: #6c757d;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.4;
-    display: block;
-}
-
-/* Button styles */
-.confirmation-content .button-section {
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
 }
 
-.confirmation-content button {
-    padding: 14px 32px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 130px;
-    font-family: 'Arial', sans-serif;
+.confirmation-checkbox input[type="checkbox"] {
+    accent-color: #0a3b7c;
 }
 
-.confirmation-content .cancel-button {
-    background: white;
-    color: #6c757d;
-    border: 2px solid #dee2e6;
+.confirmation-checkbox input[type="checkbox"]:checked {
+    background-color: #0a3b7c;
 }
 
-.confirmation-content .cancel-button:hover:not(:disabled) {
-    background: #f8f9fa;
-    color: #495057;
-    border-color: #adb5bd;
+.confirmation-buttons button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.confirmation-content .proceed-button {
-    background: #0a3b7c;
-    color: white;
-    border: 2px solid #0a3b7c;
-    min-width: 150px;
+.confirmation-buttons button:active {
+    transform: translateY(0);
 }
 
-.confirmation-content .proceed-button:not(:disabled):hover {
-    background: #08306b;
-    border-color: #08306b;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(10, 59, 124, 0.3);
+#proceedButton:not(:disabled):hover {
+    background-color: #05294b !important;
 }
 
-.confirmation-content .proceed-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none !important;
-    box-shadow: none !important;
+#cancelButton:hover {
+    background-color: #5a6268 !important;
 }
 
-/* Lock icon */
-.confirmation-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-    color: #0a3b7c;
-    text-align: center;
-}
-
-/* Responsive adjustments */
+/* Responsive adjustments for confirmation modal */
 @media (max-width: 768px) {
     .confirmation-content {
         width: 95%;
         max-width: 95%;
+        margin: 20px;
     }
     
-    .confirmation-content > div {
-        padding: 30px 20px !important;
-    }
-    
-    .confirmation-content h3 {
-        font-size: 20px;
-    }
-    
-    .confirmation-content .message-box {
+    .confirmation-body {
         padding: 20px;
     }
     
-    .confirmation-content .message-box p {
-        font-size: 14px;
+    .confirmation-checkbox {
+        padding: 12px;
     }
     
-    .confirmation-content .checkbox-section {
-        padding: 20px;
+    .confirmation-buttons {
+        flex-direction: column;
+        gap: 10px;
     }
     
-    .confirmation-content .checkbox-label {
-        font-size: 15px;
-    }
-    
-    .confirmation-content button {
-        padding: 12px 24px;
-        font-size: 14px;
-        min-width: 110px;
-    }
-    
-    .confirmation-content .proceed-button {
-        min-width: 130px;
-    }
-    
-    .confirmation-icon {
-        font-size: 40px;
+    .confirmation-buttons button {
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     .confirmation-content {
-        width: 90%;
+        width: 98%;
+        max-width: 98%;
         margin: 10px;
     }
     
-    .confirmation-content > div {
-        padding: 25px 15px !important;
-    }
-    
-    .confirmation-content h3 {
-        font-size: 18px;
-    }
-    
-    .confirmation-content .subtitle {
-        font-size: 12px;
-    }
-    
-    .confirmation-content .message-box {
+    .confirmation-body {
         padding: 15px;
     }
     
-    .confirmation-content .message-box p {
-        font-size: 13px;
-    }
-    
-    .confirmation-content .checkbox-section {
-        padding: 15px;
-    }
-    
-    .confirmation-content .checkbox-container {
-        gap: 10px;
-    }
-    
-    #privacyPolicyCheckbox {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .confirmation-content .checkbox-label {
-        font-size: 14px;
-    }
-    
-    .confirmation-content .checkbox-label span {
-        font-size: 12px;
-    }
-    
-    .confirmation-content .button-section {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .confirmation-content button {
-        width: 100%;
-        min-width: unset;
-        padding: 12px;
-    }
-    
-    .confirmation-icon {
-        font-size: 36px;
-    }
-}
-
-/* Small height screens */
-@media (max-height: 600px) {
-    .confirmation-content > div {
-        padding: 20px !important;
-    }
-    
-    .confirmation-icon {
-        font-size: 32px;
-        margin-bottom: 10px;
-    }
-    
-    .confirmation-content h3 {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
-    
-    .confirmation-content .subtitle {
-        font-size: 12px;
-    }
-    
-    .confirmation-content .message-box,
-    .confirmation-content .checkbox-section {
-        padding: 15px;
-        margin: 10px 0;
-    }
-    
-    .confirmation-content button {
-        padding: 10px 20px;
-        font-size: 14px;
+    .confirmation-header h3 {
+        font-size: 1.3rem;
     }
 }
