@@ -163,4 +163,4 @@ document.addEventListener("scroll", () => {
     };
     
     console.log('Chat inquiry system loaded successfully');
-})();
+})(); 
