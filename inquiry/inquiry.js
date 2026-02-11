@@ -38,7 +38,7 @@ document.addEventListener("scroll", () => {
     confirmationBody.style.padding = '30px';
     confirmationBody.style.textAlign = 'center';
     
-    // Add confirmation modal content
+    // Add confirmation modal content with updated button colors
     confirmationBody.innerHTML = `
         <div class="confirmation-header" style="margin-bottom: 20px;">
             <h3 style="color: #0b192a; margin-bottom: 15px; font-weight: 600;">Privacy Policy Acknowledgement</h3>
@@ -66,19 +66,19 @@ document.addEventListener("scroll", () => {
         <div class="confirmation-buttons" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
             <button id="cancelButton" class="btn" style="
                 padding: 10px 25px;
-                background-color: #6c757d;
+                background-color: #dc3545;
                 color: white;
-                border: none;
+                border: 1px solid #dc3545;
                 border-radius: 5px;
                 font-weight: 500;
                 cursor: pointer;
-                transition: background-color 0.3s ease;
+                transition: transform 0.3s ease;
             ">Cancel</button>
             <button id="proceedButton" class="btn" style="
                 padding: 10px 25px;
-                background-color: #0b192a;
+                background-color: #0a3b7c;
                 color: white;
-                border: none;
+                border: 1px solid #0a3b7c;
                 border-radius: 5px;
                 font-weight: 500;
                 cursor: not-allowed;
@@ -147,11 +147,15 @@ document.addEventListener("scroll", () => {
             proceedButton.style.cursor = 'pointer';
             proceedButton.style.opacity = '1';
             proceedButton.style.backgroundColor = '#0a3b7c';
+            proceedButton.style.color = 'white';
+            proceedButton.style.border = '1px solid #0a3b7c';
         } else {
             proceedButton.disabled = true;
             proceedButton.style.cursor = 'not-allowed';
             proceedButton.style.opacity = '0.6';
-            proceedButton.style.backgroundColor = '#0b192a';
+            proceedButton.style.backgroundColor = '#0a3b7c';
+            proceedButton.style.color = 'white';
+            proceedButton.style.border = '1px solid #0a3b7c';
         }
     }
     
@@ -195,6 +199,29 @@ document.addEventListener("scroll", () => {
     
     cancelButton.addEventListener('click', function() {
         hideConfirmationModal();
+    });
+    
+    // Remove hover color change listeners - colors remain consistent
+    // Only keep transform effects for visual feedback
+    
+    cancelButton.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+    });
+    
+    cancelButton.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+    
+    proceedButton.addEventListener('mouseenter', function() {
+        if (!this.disabled) {
+            this.style.transform = 'translateY(-2px)';
+        }
+    });
+    
+    proceedButton.addEventListener('mouseleave', function() {
+        if (!this.disabled) {
+            this.style.transform = 'translateY(0)';
+        }
     });
     
     // Close confirmation modal when clicking outside
