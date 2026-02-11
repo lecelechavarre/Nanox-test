@@ -470,12 +470,37 @@
     transform: translateY(0);
 }
 
-#proceedButton:not(:disabled):hover {
-    background-color: #05294b !important;
+/* Cancel button - consistent red color */
+#cancelButton {
+    background-color: #dc3545 !important;
+    color: white !important;
+    border-color: #dc3545 !important;
 }
 
 #cancelButton:hover {
-    background-color: #5a6268 !important;
+    background-color: #dc3545 !important;
+    color: white !important;
+    border-color: #dc3545 !important;
+}
+
+/* Proceed button - consistent dark blue color */
+#proceedButton:not(:disabled) {
+    background-color: #0a3b7c !important;
+    color: white !important;
+    border-color: #0a3b7c !important;
+}
+
+#proceedButton:not(:disabled):hover {
+    background-color: #0a3b7c !important;
+    color: white !important;
+    border-color: #0a3b7c !important;
+}
+
+#proceedButton:disabled {
+    background-color: #0a3b7c !important;
+    color: white !important;
+    border-color: #0a3b7c !important;
+    opacity: 0.6;
 }
 
 /* Responsive adjustments for confirmation modal */
